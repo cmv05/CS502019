@@ -1,29 +1,60 @@
 #include <cs50.h>
 #include <stdio.h>
 
+// The following comments are just for guidance and offer some tips on
+// how to better structure the code for easier readability and reasoning.
+
+// See C conventions for writing code here: 
+
+
+
+
+// What does main need to return? What is the "return type" of the main procedure? 
+// We talked about return types in Java, when we talked about methods. 
+// Think of the requested output in your given problem. 
+// Do it even need to return something? - This is *NOT* a hint, I am just asking so you
+// think about it. 
 int main()
 {
+
+  // length, not lenght.
+  // I also recommend you 
   int digit, produs = 0, suma = 0,lenght = 0, check = 1;
+  
+  // long long type is good...
   long long copy_card_number, Card_Number;
 
     do {
         printf( "Enter your credit card number here: ");
+        
+        // Why print this twice? get_long already prints a string
+        
         Card_Number = get_long("Enter your credit card number here: ");
         }
     while(Card_Number <= 0);
 
    copy_card_number = Card_Number;
-
+  
+  // This is a good chance to introduce a function/procedure/ "sub-program".
+  // https://www.tutorialspoint.com/cprogramming/c_functions.htm
+  
   //checks number of digits
   while (copy_card_number != 0)
   {    lenght ++;
        copy_card_number = copy_card_number / 10;
   }
-
+  
+  // This is a very very big if. 
+  // Consider doing an early return here. Invert the condition 
+  // i.e. if ( length != 13, .... ) return printf("INVALID");
+  
   if (lenght == 13 || lenght == 15 || lenght == 16)
   {
   copy_card_number = Card_Number;
 
+  // This is a good chance to introduce a function/procedure/ "sub-program".
+  // It's a good idea to separate pieces of logic like this.
+  
   //Luhn's Algorithm
   while (copy_card_number != 0)
   {
